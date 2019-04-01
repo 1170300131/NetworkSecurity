@@ -96,7 +96,7 @@
 
   三次握手完成，建立连接，开始发送数据，首先便是本机发送GET请求，捕获如下：
 
-  ![get](./picture/http_5layers.png)
+  ![get](./picture/HTTP_5layers.png)
 
   可以看到与三次握手的TCP不同，HTTP有5层。
 

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <string.h>
 #include "ether_tcp_ip.h"
 
 /* default snap length (maximum bytes per packet to capture)*/
@@ -87,7 +88,7 @@ void print_payload(const u_char* payload, int len, FILE* fp)
 	for(;;){
 		/* compute current line length */				/* 计算当前行长度*/
 		line_len = line_width % len_rem;
-		printf("width:%d len_rem:%d len:%d\n", line_width, len_rem, line_len);
+		// printf("width:%d len_rem:%d len:%d\n", line_width, len_rem, line_len);
 		/* print line*/									/* 打印一行*/
 		print_hex_ascii_line(ch, line_len, offset);
 		/* compute total remaining */					/* 计算剩余总数*/
@@ -103,6 +104,26 @@ void print_payload(const u_char* payload, int len, FILE* fp)
 			break;
 		}
 	}
+}
+
+char* get_mac(u_char ethernet_host[ETHER_ADDER_LEN])
+{
+	char* mac_addr;
+
+	char temp[2];
+	for(int i=0;i<ETHER_ADDER_LEN;i++){
+		sprintf(temp, "%x", ethernet_host[i]);
+		if(i!=0){
+			*mac_addr = ':';
+			mac_addr++;
+		}
+		for(int j=0;j<2;j++){
+			*mac_addr = temp[j];
+			mac_addr++;
+		}
+	}
+	mac_addr -= (ETHER_ADDER_LEN+ETHER_ADDER_LEN/2-1);
+	return mac_addr;
 }
 
 void grap(u_char* user, const struct pcap_pkthdr* h, const u_char* packet)
@@ -187,7 +208,7 @@ void grap(u_char* user, const struct pcap_pkthdr* h, const u_char* packet)
 	/* 打印tcp内容; 可能是二进制形式, 不能将其简单的视为字符串*/
 	if(size_payload > 0){
 		printf("Payload (%d bytes):\n", size_payload);
-		// print_payload(payload, size_payload, (FILE*)user);
+		print_payload(payload, size_payload, (FILE*)user);
 	}
 
 	/* 使用传入的参数 user为文件名*/

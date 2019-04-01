@@ -105,7 +105,7 @@
 
 * socket地址的数据类型
 
-  ![image-20190309110949861](/Users/admin/Library/Application Support/typora-user-images/image-20190309110949861.png)
+  ![socket_struct](/Users/admin/Library/Application Support/typora-user-images/image-20190309110949861.png)
 
   IPv4 - AF_INET - sockaddr_in - 16位端口号+32位IP地址
 
@@ -145,13 +145,13 @@
 
 * TCP三次握手建立连接
 
-  ![image-20190309102322145](/Users/admin/Library/Application Support/typora-user-images/image-20190309102322145.png)
+  ![3hands](/Users/admin/Library/Application Support/typora-user-images/image-20190309102322145.png)
 
   > 客户端的connect在三次握手的第二个次返回，而服务器端的accept在三次握手的第三次返回。
 
 * TCP四次握手释放连接
 
-  ![image-20190309102423757](/Users/admin/Library/Application Support/typora-user-images/image-20190309102423757.png)
+  ![4handfree](/Users/admin/Library/Application Support/typora-user-images/image-20190309102423757.png)
 
   
 
@@ -232,5 +232,3 @@
 * [Qt使用多线程的一些心得——1.继承QThread的多线程使用方法](https://blog.csdn.net/czyt1988/article/details/64441443)
 
 * [Qt使用多线程的一些心得——2.继承QObject的多线程使用方法]()https://blog.csdn.net/czyt1988/article/details/71194457
-
-* 
